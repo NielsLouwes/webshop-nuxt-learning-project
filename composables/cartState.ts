@@ -1,4 +1,4 @@
-import type { Product } from "~/app.vue";
+import type { Product } from "~/pages/index.vue";
 
 export const useCartStore = () => useState<Product[]>("cart", () => []);
 

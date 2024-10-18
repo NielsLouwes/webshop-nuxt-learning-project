@@ -1,0 +1,39 @@
+<script lang="ts" setup>
+import type { Product } from "../index.vue";
+
+const { id } = useRoute().params;
+
+const { data: product, error } = await useFetch<Product>(
+  `https://fakestoreapi.com/products/${id}`
+);
+
+console.log("product", product);
+</script>
+
+<template>
+  <div class="flex gap-12 p-12 bg-white-200">
+    <img
+      :src="product?.image"
+      :alt="product?.title"
+      width="300"
+      height="auto"
+    />
+    <div>
+      <h1 class="text-3xl pb-4">{{ product?.title }}</h1>
+      <p>{{ product?.description }}</p>
+      <p class="mt-10"><strong>Price:</strong> {{ product?.price }}</p>
+      <p
+        class="text-orange-500 text-sm"
+        v-if="product?.rating?.rate && product?.rating?.rate > 4"
+      >
+        Highly liked by others!
+      </p>
+      <button
+        v-on:click="addToCart(product as Product)"
+        class="bg-orange-500 text-white py-2 px-4 rounded-md mb-10 mt-4"
+      >
+        Add to cart
+      </button>
+    </div>
+  </div>
+</template>
