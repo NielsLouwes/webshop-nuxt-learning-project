@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import type { Product } from "~/pages/index.vue";
+
+const props = defineProps<{
+  product: Product;
+}>();
+</script>
+
 <template>
   <NuxtLink :to="`/products/${product.id}`" class="product-card">
     <div class="flex flex-col gap-4">
@@ -21,16 +29,6 @@
     </div>
   </NuxtLink>
 </template>
-
-<!-- v-on:click="navigateTo(`/products/${product.id}`) -->
-
-<script lang="ts" setup>
-import type { Product } from "~/pages/index.vue";
-
-const props = defineProps<{
-  product: Product;
-}>();
-</script>
 
 <style scoped>
 .product-card {
