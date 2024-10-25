@@ -10,15 +10,15 @@ const { data: product, error } = await useFetch<Product>(
 
 <template>
   <div class="flex gap-12 py-20 px-24 bg-white-200">
-    <div class="w-1/2 flex justify-center">
+    <div class="w-1/3 lg:w-1/2 flex justify-center">
       <img
         :src="product?.image"
         :alt="product?.title"
-        width="300"
         height="auto"
+        class="max-w-[150px] lg:max-w-[300px]"
       />
     </div>
-    <div class="grow">
+    <div>
       <h1 class="text-3xl font-bold pb-4">{{ product?.title }}</h1>
       <p>{{ product?.description }}</p>
       <p class="mt-10"><strong>Price:</strong> {{ product?.price }}</p>
