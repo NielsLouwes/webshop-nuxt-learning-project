@@ -19,14 +19,14 @@ console.log("product", product);
       height="auto"
     />
     <div>
-      <h1 class="text-3xl pb-4">{{ product?.title }}</h1>
+      <h1 class="text-3xl font-bold pb-4">{{ product?.title }}</h1>
       <p>{{ product?.description }}</p>
       <p class="mt-10"><strong>Price:</strong> {{ product?.price }}</p>
       <p
         class="text-orange-500 text-sm"
         v-if="product?.rating?.rate && product?.rating?.rate > 4"
       >
-        Highly liked by others!
+        Highly rated by other users!
       </p>
       <button
         v-on:click="addToCart(product as Product)"

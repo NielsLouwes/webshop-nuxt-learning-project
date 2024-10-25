@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Product } from "~/pages/index.vue";
 
-const props = defineProps<{
+defineProps<{
   product: Product;
 }>();
 </script>
