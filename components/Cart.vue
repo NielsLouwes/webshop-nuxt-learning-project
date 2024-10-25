@@ -1,23 +1,15 @@
 <script lang="ts" setup>
 const cartStore = useCartStore();
 const cartCount = useCartCount();
-console.log("cartCount", cartCount.value);
 </script>
 
 <template>
-  <div>
-    <p class="text-xl font-bold cursor-pointer">
+  <NuxtLink :to="`/cart`">
+    <p
+      class="text-xl font-bold cursor-pointer border-solid border-2 px-2 border-orange-200 rounded-lg"
+    >
       <span class="text-sm text-orange-500 py-4">{{ cartCount }}</span>
       Cart
     </p>
-
-    <!-- <div v-for="product in cartStore" :key="product.id">
-      <div class="flex flex-row gap-4">
-        <p>{{ product.title }}</p>
-        <p>{{ product.price }}</p>
-      </div>
-    </div> -->
-
-    <!-- <p>{{ cartStore }}</p> -->
-  </div>
+  </NuxtLink>
 </template>
