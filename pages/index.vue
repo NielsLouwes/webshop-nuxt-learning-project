@@ -14,17 +14,29 @@ export type Product = {
   category: string;
 };
 
-const { data: products } = useFetch<Product[]>(
-  "https://fakestoreapi.com/products"
-);
+const route = useRoute();
+const router = useRouter();
+const selectedCategory = ref(route.query.category || "All");
 
-const selectedCategory = ref("All");
+// Fetch products and handle loading and error states
+const {
+  data: products,
+  pending,
+  error,
+} = useFetch<Product[]>("https://fakestoreapi.com/products");
 
-const categories = products.value?.map((product) => product.category);
-const uniqueCategories = [...new Set(categories)];
+// Watch for category changes and update the URL query
+watch(selectedCategory, (newCategory) => {
+  router.push({ query: { ...route.query, category: newCategory } });
+});
 
-console.log("uniqueCategories", uniqueCategories);
+// Extract categories after products are fetched
+const uniqueCategories = computed(() => {
+  const categories = products.value?.map((product) => product.category) || [];
+  return [...new Set(categories)];
+});
 
+// Filter products based on selected category
 const filteredProducts = computed(() => {
   if (selectedCategory.value === "All") {
     return products.value;
@@ -37,6 +49,7 @@ const filteredProducts = computed(() => {
 
 <template>
   <div class="container mx-auto">
+    <!-- Category Filter -->
     <div class="flex gap-2 mt-4">
       <h2 class="text-xl font-bold">Filters</h2>
       <select class="border-2 p-1" v-model="selectedCategory">
@@ -47,9 +60,19 @@ const filteredProducts = computed(() => {
       </select>
     </div>
 
-    <div class="flex flex-wrap gap-4 p-3 m-3">
-      <div v-for="product in filteredProducts" :key="product.id">
-        <ProductCard :product="product" />
+    <!-- Loading and Error Handling -->
+    <div v-if="pending">
+      <p>Loading products...</p>
+    </div>
+    <div v-else-if="error">
+      <p>Error loading products. Please try again later.</p>
+    </div>
+    <div v-else>
+      <!-- Product List -->
+      <div class="flex flex-wrap gap-4 p-3 m-3">
+        <div v-for="product in filteredProducts" :key="product.id">
+          <ProductCard :product="product" />
+        </div>
       </div>
     </div>
   </div>
