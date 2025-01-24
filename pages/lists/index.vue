@@ -1,5 +1,8 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const listStore = useListStore();
+</script>
 
 <template>
-  <div>Lists</div>
+  <h1>Lists</h1>
+  <div v-for="product in listStore">{{ product }}</div>
 </template>

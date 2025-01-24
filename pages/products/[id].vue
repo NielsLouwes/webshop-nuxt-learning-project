@@ -38,7 +38,7 @@ const { data: product, error } = await useFetch<Product>(
         >
         </Button>
 
-        <Modal label="Add to list" />
+        <Modal v-if="product" label="Add to list" :product="product" />
       </div>
     </div>
   </div>
