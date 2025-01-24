@@ -30,18 +30,15 @@ const { data: product, error } = await useFetch<Product>(
         Highly rated by other users!
       </p>
 
-      <div class="flex gap-3">
+      <div class="flex gap-3 items-center">
         <Button
           v-on:click="addToCart(product as Product)"
           class="bg-orange-500 text-white py-2 px-4 rounded-md mb-10 mt-4 w-40"
           text="Add to cart"
         >
         </Button>
-        <Button
-          class="bg-orange-500 text-white py-2 px-4 rounded-md mb-10 mt-4 w-40"
-          text="Add to list"
-        >
-        </Button>
+
+        <Modal label="Add to list" />
       </div>
     </div>
   </div>
