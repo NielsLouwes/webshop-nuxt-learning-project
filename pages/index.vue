@@ -18,8 +18,8 @@ const route = useRoute();
 const router = useRouter();
 const selectedCategory = ref(route.query.category || "All");
 
-// Fetch products and handle loading and error states
-const {
+const// Fetch products and handle loading and error states
+ {
   data: products,
   pending,
   error,
