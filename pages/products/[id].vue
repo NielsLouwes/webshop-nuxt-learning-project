@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Button from "~/components/Button.vue";
 import type { Product } from "../index.vue";
 
 const { id } = useRoute().params;
@@ -28,12 +29,20 @@ const { data: product, error } = await useFetch<Product>(
       >
         Highly rated by other users!
       </p>
-      <button
-        v-on:click="addToCart(product as Product)"
-        class="bg-orange-500 text-white py-2 px-4 rounded-md mb-10 mt-4"
-      >
-        Add to cart
-      </button>
+
+      <div class="flex gap-3">
+        <Button
+          v-on:click="addToCart(product as Product)"
+          class="bg-orange-500 text-white py-2 px-4 rounded-md mb-10 mt-4 w-40"
+          text="Add to cart"
+        >
+        </Button>
+        <Button
+          class="bg-orange-500 text-white py-2 px-4 rounded-md mb-10 mt-4 w-40"
+          text="Add to list"
+        >
+        </Button>
+      </div>
     </div>
   </div>
 </template>
