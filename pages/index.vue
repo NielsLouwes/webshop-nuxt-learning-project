@@ -12,6 +12,7 @@ export type Product = {
   image: string;
   rating: Rating;
   category: string;
+  quantity: number;
 };
 
 const route = useRoute();

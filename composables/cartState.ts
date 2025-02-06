@@ -9,6 +9,7 @@ export const useCartCount = () => {
 
 export const addToCart = (product: Product) => {
   const cartStore = useCartStore();
+  console.log("cartStore", cartStore);
 
   const existingProduct = cartStore.value.find(
     (p) => p.description === product.description
@@ -16,7 +17,9 @@ export const addToCart = (product: Product) => {
 
   if (existingProduct) {
     existingProduct.price += product.price;
+    existingProduct.quantity += 1;
   } else {
+    product.quantity = 1;
     cartStore.value.push(product);
   }
 };
