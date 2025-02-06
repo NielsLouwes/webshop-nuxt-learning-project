@@ -8,17 +8,22 @@ const totalCost = cartTotalCost();
   <div
     v-for="product in cartStore"
     :key="product.id"
-    class="flex flex-row gap-4 border-2 border-gray-200 py-4 px-4 rounded-lg mb-2"
+    class="flex flex-row gap-4 border-2 border-gray-200 py-4 px-4 rounded-lg mb-2 justify-between"
   >
-    <img :src="product.image" alt="product image" width="100" />
-    <div class="flex flex-row gap-24">
+    <div class="flex gap-10">
+      <img :src="product.image" alt="product image" width="100" />
       <span class="text-lg font-bold">{{ product.title }}</span>
-      <span class="text-sm">Total: ${{ product.price }}</span>
-      <span> # of items: {{ product.quantity }}</span>
+    </div>
+
+    <div class="flex">
+      <div class="flex flex-col pr-2 gap-2">
+        <span class="text-sm">Cost: ${{ product.price }}</span>
+        <span class="text-sm"> Quantity: {{ product.quantity }}</span>
+      </div>
     </div>
   </div>
 
-  <div>
+  <div v-if="cartStore.length">
     <h2><strong>Total Cost:</strong> {{ totalCost }}</h2>
   </div>
 </template>

@@ -9,7 +9,6 @@ export const useCartCount = () => {
 
 export const addToCart = (product: Product) => {
   const cartStore = useCartStore();
-  console.log("cartStore", cartStore);
 
   const existingProduct = cartStore.value.find(
     (p) => p.description === product.description
