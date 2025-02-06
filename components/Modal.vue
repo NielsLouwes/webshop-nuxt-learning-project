@@ -6,9 +6,6 @@ const listStore = useListStore();
 const isOpen = ref(false);
 
 const { label, product } = defineProps<{ label: string; product: Product }>();
-
-console.log("product MODAL:", product);
-console.log("listStore", listStore);
 </script>
 
 <template>
@@ -18,10 +15,7 @@ console.log("listStore", listStore);
     <UModal v-model="isOpen">
       <div class="p-4 h-48 flex justify-between">
         <h2 class="font-bold">Your lists</h2>
-        <button
-          class="flex gap-2 font-bold"
-          v-on:click="addtoList(product.title)"
-        >
+        <button class="flex gap-2 font-bold">
           <span>Create list</span>
           <span>+</span>
         </button>

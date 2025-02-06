@@ -18,12 +18,10 @@ const route = useRoute();
 const router = useRouter();
 const selectedCategory = ref(route.query.category || "All");
 
-const// Fetch products and handle loading and error states
- {
-  data: products,
-  pending,
-  error,
-} = useFetch<Product[]>("https://fakestoreapi.com/products");
+const // Fetch products and handle loading and error states
+  { data: products, error } = useFetch<Product[]>(
+    "https://fakestoreapi.com/products"
+  );
 
 // Watch for category changes and update the URL query
 watch(selectedCategory, (newCategory) => {
@@ -45,6 +43,8 @@ const filteredProducts = computed(() => {
     (product) => product.category === selectedCategory.value
   );
 });
+
+//sdafd sa
 </script>
 
 <template>
@@ -60,8 +60,7 @@ const filteredProducts = computed(() => {
       </select>
     </div>
 
-    <!-- Loading and Error Handling -->
-    <div v-if="pending">
+    <div v-if="!products">
       <p>Loading products...</p>
     </div>
     <div v-else-if="error">

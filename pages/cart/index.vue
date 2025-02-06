@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const cartStore = useCartStore();
-console.log("cartStore", cartStore);
 </script>
 
 <template>
