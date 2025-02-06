@@ -23,3 +23,16 @@ export const addToCart = (product: Product) => {
     cartStore.value.push(product);
   }
 };
+
+export const cartTotalCost = () => {
+  const cartStore = useCartStore();
+
+  let total = 0;
+
+  cartStore.value.map((cart) => {
+    console.log("cart.price", cart.price);
+    total += cart.price;
+  });
+
+  return total;
+};

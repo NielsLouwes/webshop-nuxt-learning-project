@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const cartStore = useCartStore();
+const totalCost = cartTotalCost();
 </script>
 
 <template>
@@ -15,5 +16,9 @@ const cartStore = useCartStore();
       <span class="text-sm">Total: ${{ product.price }}</span>
       <span> # of items: {{ product.quantity }}</span>
     </div>
+  </div>
+
+  <div>
+    <h2><strong>Total Cost:</strong> {{ totalCost }}</h2>
   </div>
 </template>
