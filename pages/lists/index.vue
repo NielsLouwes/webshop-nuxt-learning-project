@@ -19,7 +19,11 @@ const inputValue = ref("");
         type="text"
         placeholder="Enter list name"
         v-model="inputValue"
-        v-on:keyup.enter="createList(inputValue)"
+        v-on:keyup.enter="
+          createList(inputValue);
+          inputValue = '';
+          showListInput = false;
+        "
       />
     </div>
   </div>

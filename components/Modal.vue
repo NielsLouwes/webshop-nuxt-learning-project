@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Product } from "~/types/global";
 
-const listStore = useListStore();
+const objectStore = useListStore();
 
 const isOpen = ref(false);
 
@@ -20,7 +20,7 @@ const { label, product } = defineProps<{ label: string; product: Product }>();
           <span>+</span>
         </button>
       </div>
-      <div v-for="product in listStore">{{ product }}</div>
+      <div v-for="list in Object.keys(objectStore)">{{ list }}</div>
     </UModal>
   </div>
 </template>
