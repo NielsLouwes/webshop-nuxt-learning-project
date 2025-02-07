@@ -1,26 +1,12 @@
 <script setup lang="ts">
-export type Rating = {
-  rate: number;
-  count: number;
-};
-
-export type Product = {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  image: string;
-  rating: Rating;
-  category: string;
-  quantity: number;
-};
+import type { Product } from "~/types/global";
 
 const route = useRoute();
 const router = useRouter();
 const selectedCategory = ref(route.query.category || "All");
 
 const // Fetch products and handle loading and error states
-  { data: products, error } = useFetch<Product[]>(
+  { data: products, error } = await useFetch<Product[]>(
     "https://fakestoreapi.com/products"
   );
 
@@ -44,8 +30,6 @@ const filteredProducts = computed(() => {
     (product) => product.category === selectedCategory.value
   );
 });
-
-//sdafd sa
 </script>
 
 <template>

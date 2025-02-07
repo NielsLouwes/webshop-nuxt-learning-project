@@ -1,4 +1,4 @@
-import type { Product } from "~/pages/index.vue";
+import type { Product } from "~/types/global";
 
 export const useCartStore = () => useState<Product[]>("cart", () => []);
 
@@ -28,9 +28,9 @@ export const cartTotalCost = () => {
 
   let total = 0;
 
-  cartStore.value.map((cart) => {
-    console.log("cart.price", cart.price);
-    total += cart.price;
+  cartStore.value.map((cartItem) => {
+    console.log("cartItem.price", cartItem.price);
+    total += cartItem.price;
   });
 
   return total;

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import Button from "~/components/Button.vue";
-import type { Product } from "../index.vue";
+import type { Product } from "~/types/global";
 
 const { id } = useRoute().params;
 
-const { data: product, error } = await useFetch<Product>(
+const { data: product } = await useFetch<Product>(
   `https://fakestoreapi.com/products/${id}`
 );
 </script>

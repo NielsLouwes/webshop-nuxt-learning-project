@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Product } from "~/pages/index.vue";
+import type { Product } from "~/types/global";
 
 const listStore = useListStore();
 

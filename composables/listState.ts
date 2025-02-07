@@ -1,4 +1,4 @@
-import type { Product } from "~/pages/index.vue";
+import type { Product } from "~/types/global";
 
 export const useListStore = () => {
   return useState<string[]>("list", () => []);
