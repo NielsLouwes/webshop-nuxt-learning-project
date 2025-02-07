@@ -1,40 +1,30 @@
 <script lang="ts" setup>
-const listStore = useListStore();
-
-// rendering lists in lists
-/* VERSION 1
-1. Add the product name to the listStore , into the array
-2. 
-
-VERSION 2
-1. ListStore becomes an Object, and the lists are keys, items are an array of product names
-*/
+const { objectStore, createList } = useListStore();
 
 const showListInput = ref(false);
-const listName = ref("");
-const addList = () => {
-  listStore.value.push(listName.value);
-  showListInput.value = false;
-};
+const inputValue = ref("");
 </script>
 
 <template>
   <div class="flex mt-10 justify-between">
     <h1 class="mb-12">Lists</h1>
-    <button class="flex gap-2">
-      <span @click="showListInput = true">Create list</span>
-      <span>+</span>
-    </button>
-    <!-- <input
-      v-if="showListInput"
-      class="border-2 border-gray-300 rounded-md"
-      type="text"
-      placeholder="Enter list name"
-      v-model="listName"
-      @keyup.enter="addList"
-      @change="listName = $event.target.value"
-    /> -->
+    <div>
+      <button class="flex gap-2" v-on:click="showListInput = true">
+        <span>Create list</span>
+        <span>+</span>
+      </button>
+      <input
+        v-if="showListInput"
+        class="border-2 border-orange-300 rounded-md p-2"
+        type="text"
+        placeholder="Enter list name"
+        v-model="inputValue"
+        v-on:keyup.enter="createList(inputValue)"
+      />
+    </div>
   </div>
 
-  <div v-for="product in listStore">{{ product }}</div>
+  <div v-for="list in Object.keys(objectStore)" :key="list">
+    {{ list }}
+  </div>
 </template>

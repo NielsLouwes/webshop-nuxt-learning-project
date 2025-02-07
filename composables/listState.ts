@@ -1,19 +1,34 @@
 import type { Product } from "~/types/global";
 
+type ObjectStoreType = { [key: string]: string[] };
+
 export const useListStore = () => {
-  return useState<string[]>("list", () => []);
-};
+  const list = useState<string[]>("list", () => []);
+  const objectStore = useState<ObjectStoreType>("objectStore", () => ({}));
 
-export const addToList = (product: Product) => {
-  const listStore = useListStore();
-  console.log("listStore", listStore);
+  // Update addToList to instead add products to the keys in objectStore
+  // Can then remove list altogether
 
-  const existingProduct = listStore.value.find((p) => p === product.title);
-  console.log("existingProduct", existingProduct);
+  const addToList = (product: Product) => {
+    const existingProduct = list.value.find((p) => p === product.title);
 
-  if (!existingProduct) {
-    listStore.value.push(product.title);
-  } else {
-    console.log("product already added to list!");
-  }
+    if (!existingProduct) {
+      list.value.push(product.title);
+    } else {
+      console.log("product already added to list!");
+    }
+  };
+
+  const createList = (name: string) => {
+    if (!objectStore.value[name]) {
+      objectStore.value[name] = [];
+    }
+  };
+
+  return {
+    list,
+    objectStore: objectStore.value,
+    addToList,
+    createList,
+  };
 };
