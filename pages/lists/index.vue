@@ -37,5 +37,4 @@ const addList = () => {
   </div>
 
   <div v-for="product in listStore">{{ product }}</div>
-  <h2>First List</h2>
 </template>
