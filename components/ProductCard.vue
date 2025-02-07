@@ -1,18 +1,30 @@
 <script lang="ts" setup>
 import type { Product } from "~/types/global";
 
-defineProps<{
+const { product } = defineProps<{
   product: Product;
 }>();
+
+console.log("product", product);
+
+// product.rating > 4 , create a border that stands out!
+const highRating = product.rating.rate >= 4;
 </script>
 
 <template>
-  <NuxtLink :to="`/products/${product.id}`" class="product-card">
-    <div class="flex flex-col gap-4">
-      <h2 class="text-lg font-bold line-clamp-2 hover:line-clamp-none">
+  <NuxtLink
+    :to="`/products/${product.id}`"
+    :class="{
+      'border-2 border-red-500': highRating,
+      'border border-gray-300': !highRating,
+      'p-4 w-64 h-[450px] flex flex-col rounded-lg bg-white cursor-pointer hover:border-2 hover:border-orange-500': true,
+    }"
+  >
+    <div class="flex flex-col gap-4 relative">
+      <h2 class="text-lg font-bold line-clamp-2">
         {{ product.title }}
       </h2>
-      <p class="text-sm line-clamp-5 text-ellipsis">
+      <p class="text-sm line-clamp-3 text-ellipsis">
         {{ product.description }}
       </p>
       <p class="text-lg font-bold">Price: {{ product.price }}</p>
@@ -29,22 +41,3 @@ defineProps<{
     </div>
   </NuxtLink>
 </template>
-
-<style scoped>
-.product-card {
-  border: 1px solid #ccc;
-  padding: 15px;
-  width: 250px;
-  height: 450px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  background-color: white;
-  cursor: pointer;
-
-  &:hover {
-    border: 2px solid orange;
-  }
-}
-</style>
