@@ -25,6 +25,8 @@ export const useListStore = () => {
     }
   };
 
+  const addItemToList = () => {};
+
   return {
     list,
     objectStore: objectStore.value,

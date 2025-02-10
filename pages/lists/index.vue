@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import List from "~/components/List.vue";
+
 const { objectStore, createList } = useListStore();
 
 const showListInput = ref(false);
@@ -28,7 +30,7 @@ const inputValue = ref("");
     </div>
   </div>
 
-  <div v-for="list in Object.keys(objectStore)" :key="list">
-    {{ list }}
+  <div v-for="listName in Object.keys(objectStore)" :key="listName">
+    <List :listName="listName" />
   </div>
 </template>
