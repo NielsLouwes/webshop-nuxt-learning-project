@@ -16,10 +16,12 @@ const { label, product } = defineProps<{ label: string; product: Product }>();
       <div class="p-4">
         <div class="flex justify-between mb-8">
           <h2 class="font-bold">Your lists</h2>
-          <button class="flex gap-2 font-bold">
-            <span>Create list</span>
-            <span>+</span>
-          </button>
+          <UButton
+            @click="isOpen = false"
+            color="white"
+            icon="ic:baseline-close"
+            size="xs"
+          ></UButton>
         </div>
         <div
           v-for="listName in Object.keys(objectStore)"

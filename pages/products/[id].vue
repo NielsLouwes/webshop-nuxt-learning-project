@@ -2,7 +2,6 @@
 import Button from "~/components/Button.vue";
 import type { Product } from "~/types/global";
 
-const { addToList } = useListStore();
 const { id } = useRoute().params;
 
 const { data: product } = await useFetch<Product>(

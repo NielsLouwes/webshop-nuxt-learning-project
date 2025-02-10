@@ -4,9 +4,6 @@ const { objectStore, createList } = useListStore();
 const showListInput = ref(false);
 const inputValue = ref("");
 const selectedList = ref("");
-// if selectedList
-
-console.log("objectStore", objectStore);
 </script>
 
 <template>
@@ -34,9 +31,10 @@ console.log("objectStore", objectStore);
 
   <div v-for="listName in Object.keys(objectStore)" :key="listName">
     <!-- <List :listName="listName" /> -->
-    <h2>{{ listName }}</h2>
+    <h2 @click="selectedList = listName">{{ listName }}</h2>
     <!--click on listName, show its contents-->
     <ul
+      v-if="selectedList === listName"
       v-for="listItem in objectStore[listName]"
       :key="listItem.id"
       class="border-2 p-2"
