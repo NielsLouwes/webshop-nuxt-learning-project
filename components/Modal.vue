@@ -26,7 +26,7 @@ const { label, product } = defineProps<{ label: string; product: Product }>();
           :key="listName"
           class="p"
         >
-          <List :listName="listName" />
+          <List :listName="listName" :product="product" />
         </div>
       </div>
     </UModal>

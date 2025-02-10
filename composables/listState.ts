@@ -1,6 +1,6 @@
 import type { Product } from "~/types/global";
 
-type ObjectStoreType = { [key: string]: string[] };
+type ObjectStoreType = { [key: string]: Product[] };
 
 export const useListStore = () => {
   const list = useState<string[]>("list", () => []);
@@ -25,12 +25,22 @@ export const useListStore = () => {
     }
   };
 
-  const addItemToList = () => {};
+  const addItemToList = (listName: string, product: Product) => {
+    const existingProduct = objectStore.value[listName]?.find(
+      (item: Product) => item.description === product.description
+    );
+
+    if (!existingProduct) {
+      objectStore.value[listName] = objectStore.value[listName] || [];
+      objectStore.value[listName].push(product);
+    }
+  };
 
   return {
     list,
     objectStore: objectStore.value,
     addToList,
     createList,
+    addItemToList,
   };
 };

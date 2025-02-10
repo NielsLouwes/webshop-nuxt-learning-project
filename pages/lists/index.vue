@@ -5,6 +5,8 @@ const { objectStore, createList } = useListStore();
 
 const showListInput = ref(false);
 const inputValue = ref("");
+
+console.log("objectStore", objectStore);
 </script>
 
 <template>

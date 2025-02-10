@@ -38,12 +38,6 @@ const { data: product } = await useFetch<Product>(
           text="Add to cart"
         >
         </Button>
-        <Button
-          v-on:click="addToList(product as Product)"
-          class="bg-orange-500 text-white py-2 px-4 rounded-md mb-10 mt-4 w-40"
-          text="Add to List"
-        >
-        </Button>
 
         <Modal v-if="product" label="Add to list" :product="product" />
       </div>
