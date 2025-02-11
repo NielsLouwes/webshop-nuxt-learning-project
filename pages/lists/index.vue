@@ -1,9 +1,12 @@
 <script lang="ts" setup>
-const { objectStore, createList } = useListStore();
+const { objectStore, createList, deleteList } = useListStore();
 
 const showListInput = ref(false);
 const inputValue = ref("");
 const selectedList = ref("");
+const inputError = ref(false);
+
+const MIN_LIST_NAME_LENGTH = 3;
 </script>
 
 <template>
@@ -16,23 +19,39 @@ const selectedList = ref("");
       </button>
       <input
         v-if="showListInput"
-        class="border-2 border-orange-300 rounded-md p-2"
+        :class="[
+          'border-2',
+          inputError ? 'border-red-500' : 'border-orange-300',
+          'rounded-md',
+          'p-2',
+        ]"
         type="text"
         placeholder="Enter list name"
         v-model="inputValue"
         v-on:keyup.enter="
-          createList(inputValue);
-          inputValue = '';
-          showListInput = false;
+          if (inputValue.trim() && inputValue.length >= MIN_LIST_NAME_LENGTH) {
+            createList(inputValue);
+            inputValue = '';
+            showListInput = false;
+            inputError = false;
+          } else {
+            inputError = true;
+          }
         "
       />
     </div>
   </div>
 
   <div v-for="listName in Object.keys(objectStore)" :key="listName">
-    <!-- <List :listName="listName" /> -->
-    <h2 @click="selectedList = listName">{{ listName }}</h2>
-    <!--click on listName, show its contents-->
+    <div class="flex gap-6 mb-2 items-center cursor-pointer">
+      <UButton
+        color="white"
+        icon="ic:baseline-close"
+        size="2xs"
+        @click="deleteList(listName)"
+      />
+      <h2 @click="selectedList = listName">{{ listName }}</h2>
+    </div>
     <ul
       v-if="selectedList === listName"
       v-for="listItem in objectStore[listName]"

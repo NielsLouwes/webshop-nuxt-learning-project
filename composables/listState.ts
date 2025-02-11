@@ -17,8 +17,16 @@ export const useListStore = () => {
   };
 
   const createList = (name: string) => {
-    if (!objectStore.value[name]) {
+    if (!objectStore.value[name] && name.length > 3) {
       objectStore.value[name] = [];
+    }
+  };
+
+  const deleteList = (listName: string) => {
+    if (objectStore.value[listName]) {
+      delete objectStore.value[listName];
+      // Trigger reactivity
+      objectStore.value = { ...objectStore.value }; // Create a new object reference
     }
   };
 
@@ -39,5 +47,6 @@ export const useListStore = () => {
     addToList,
     createList,
     addItemToList,
+    deleteList,
   };
 };
