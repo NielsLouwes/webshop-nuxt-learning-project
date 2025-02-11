@@ -11,7 +11,7 @@ const MIN_LIST_NAME_LENGTH = 3;
 
 <template>
   <div class="flex mt-10 justify-between">
-    <h1 class="mb-12">Lists</h1>
+    <h1 class="mb-12 text-2xl font-bold">Lists</h1>
     <div>
       <button class="flex gap-2" v-on:click="showListInput = true">
         <span>Create list</span>
@@ -50,7 +50,7 @@ const MIN_LIST_NAME_LENGTH = 3;
         size="2xs"
         @click="deleteList(listName)"
       />
-      <h2 @click="selectedList = listName">{{ listName }}</h2>
+      <h2 class="text-xl" @click="selectedList = listName">{{ listName }}</h2>
     </div>
     <ul
       v-if="selectedList === listName"
@@ -58,7 +58,7 @@ const MIN_LIST_NAME_LENGTH = 3;
       :key="listItem.id"
       class="border-2 p-2"
     >
-      <li>{{ listItem.title }}</li>
+      <li class="capitalize">{{ listItem.title }}</li>
     </ul>
   </div>
 </template>

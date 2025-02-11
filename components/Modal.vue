@@ -24,12 +24,14 @@ const { label, product } = defineProps<{ label: string; product: Product }>();
           ></UButton>
         </div>
         <div
+          v-if="Object.keys(objectStore).length"
           v-for="listName in Object.keys(objectStore)"
           :key="listName"
           class="p"
         >
           <List :listName="listName" :product="product" />
         </div>
+        <p v-else>No saved lists. Go to /lists to create one!</p>
       </div>
     </UModal>
   </div>

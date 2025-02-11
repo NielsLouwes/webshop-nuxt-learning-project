@@ -3,7 +3,9 @@ const cartCount = useCartCount();
 </script>
 
 <template>
-  <div class="flex justify-between items-center">
+  <div
+    class="flex justify-between items-center border-bottom-2 border-solid border-1 border-b border-blue-900 pb-4"
+  >
     <NuxtLink to="/">
       <h1 class="text-4xl font-bold">
         Online Webshop Example - Built in Nuxt 3
