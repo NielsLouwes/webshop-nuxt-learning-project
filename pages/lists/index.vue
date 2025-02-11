@@ -5,8 +5,19 @@ const showListInput = ref(false);
 const inputValue = ref("");
 const selectedList = ref("");
 const inputError = ref(false);
+const inputRef = ref<HTMLInputElement | null>(null);
 
 const MIN_LIST_NAME_LENGTH = 3;
+
+watch(showListInput, () => {
+  if (showListInput.value) {
+    nextTick(() => {
+      if (inputRef.value) {
+        inputRef.value.focus();
+      }
+    });
+  }
+});
 </script>
 
 <template>
@@ -19,6 +30,7 @@ const MIN_LIST_NAME_LENGTH = 3;
       </button>
       <input
         v-if="showListInput"
+        ref="inputRef"
         :class="[
           'border-2',
           inputError ? 'border-red-500' : 'border-orange-300',
