@@ -61,6 +61,9 @@ watch(showListInput, () => {
         icon="ic:baseline-close"
         size="2xs"
         @click="deleteList(listName)"
+        role="button"
+        type="button"
+        aria-label="Delete list"
       />
       <h2 class="text-xl" @click="selectedList = listName">{{ listName }}</h2>
     </div>
@@ -68,7 +71,7 @@ watch(showListInput, () => {
       v-if="selectedList === listName"
       v-for="listItem in objectStore[listName]"
       :key="listItem.id"
-      class="border-2 p-2"
+      class="border-2 p-2 mb-4"
     >
       <li class="capitalize">{{ listItem.title }}</li>
     </ul>

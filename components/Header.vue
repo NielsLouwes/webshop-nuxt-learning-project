@@ -3,11 +3,11 @@ const cartCount = useCartCount();
 </script>
 
 <template>
-  <div
+  <nav
     class="flex justify-between items-center border-bottom-2 border-solid border-1 border-b border-blue-900 pb-4"
   >
     <NuxtLink to="/">
-      <h1 class="text-4xl font-bold">
+      <h1 class="text-lg md:text-4xl font-bold w-2/3 md:w-full">
         Online Webshop Example - Built in Nuxt 3
       </h1>
     </NuxtLink>
@@ -19,5 +19,5 @@ const cartCount = useCartCount();
         <Button text="Cart" :count="cartCount" />
       </NuxtLink>
     </div>
-  </div>
+  </nav>
 </template>

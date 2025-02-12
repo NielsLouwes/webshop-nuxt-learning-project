@@ -21,8 +21,8 @@ const { data: product } = await useFetch<Product>(
     </div>
     <div>
       <h1 class="text-3xl font-bold pb-4">{{ product?.title }}</h1>
-      <p>{{ product?.description }}</p>
-      <p class="mt-10"><strong>Price:</strong> {{ product?.price }}</p>
+      <h2>{{ product?.description }}</h2>
+      <h3 class="mt-10"><strong>Price:</strong> {{ product?.price }}</h3>
       <p
         class="text-orange-500 text-sm"
         v-if="product?.rating?.rate && product?.rating?.rate > 4"

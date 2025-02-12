@@ -21,6 +21,9 @@ const { label, product } = defineProps<{ label: string; product: Product }>();
             color="white"
             icon="ic:baseline-close"
             size="xs"
+            role="button"
+            type="button"
+            aria-label="Open add item modal"
           ></UButton>
         </div>
         <div
