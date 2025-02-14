@@ -7,6 +7,8 @@ const { id } = useRoute().params;
 const { data: product } = await useFetch<Product>(
   `https://fakestoreapi.com/products/${id}`
 );
+
+const showAlert = ref(false);
 </script>
 
 <template>
@@ -14,7 +16,7 @@ const { data: product } = await useFetch<Product>(
     <Title>{{ product?.title }}</Title>
     <Meta name="description" :content="product?.description" />
   </Head>
-  <div class="flex gap-12 py-20 px-24 bg-white-200">
+  <div class="flex gap-12 py-20 px-24 bg-white-200 z-0">
     <div class="w-1/3 lg:w-1/2 flex justify-center">
       <img
         :src="product?.image"
@@ -42,7 +44,25 @@ const { data: product } = await useFetch<Product>(
         >
         </Button>
 
-        <Modal v-if="product" label="Add to list" :product="product" />
+        <Modal
+          v-if="product"
+          label="Add to list"
+          :product="product"
+          showAlert="showAlert"
+        />
+        <UAlert
+          v-if="showAlert"
+          title="Product added!"
+          class="w-32 h-16 z-10"
+          color="green"
+          variant="outline"
+          :close-button="{
+            icon: 'i-heroicons-x-mark-20-solid',
+            color: 'gray',
+            variant: 'link',
+            padded: false,
+          }"
+        />
       </div>
     </div>
   </div>
