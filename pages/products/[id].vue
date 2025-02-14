@@ -10,6 +10,10 @@ const { data: product } = await useFetch<Product>(
 </script>
 
 <template>
+  <Head>
+    <Title>{{ product?.title }}</Title>
+    <Meta name="description" :content="product?.description" />
+  </Head>
   <div class="flex gap-12 py-20 px-24 bg-white-200">
     <div class="w-1/3 lg:w-1/2 flex justify-center">
       <img

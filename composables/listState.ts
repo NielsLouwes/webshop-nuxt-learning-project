@@ -12,7 +12,7 @@ export const useListStore = () => {
     if (!existingProduct) {
       list.value.push(product.title);
     } else {
-      console.log("product already added to list!");
+      console.warn("product already added to list!");
     }
   };
 

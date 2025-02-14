@@ -5,10 +5,9 @@ const route = useRoute();
 const router = useRouter();
 const selectedCategory = ref(route.query.category || "All");
 
-const // Fetch products and handle loading and error states
-  { data: products, error } = await useFetch<Product[]>(
-    "https://fakestoreapi.com/products"
-  );
+const { data: products, error } = await useFetch<Product[]>(
+  "https://fakestoreapi.com/products"
+);
 
 // Watch for category changes and update the URL query
 watch(selectedCategory, (newCategory) => {
@@ -34,7 +33,6 @@ const filteredProducts = computed(() => {
 
 <template>
   <div class="container mx-auto">
-    <!-- Category Filter -->
     <div class="flex gap-2 mt-4">
       <h2 class="text-xl font-bold">Filters</h2>
       <select class="border-2 p-1" v-model="selectedCategory">
@@ -52,7 +50,6 @@ const filteredProducts = computed(() => {
       <p>Error loading products. Please try again later.</p>
     </div>
     <div v-else>
-      <!-- Product List -->
       <div class="flex flex-wrap gap-4 p-3 m-3">
         <div v-for="product in filteredProducts" :key="product.id">
           <ProductCard :product="product" />

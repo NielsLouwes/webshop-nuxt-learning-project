@@ -6,4 +6,9 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
   modules: ["@nuxt/ui"],
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+    },
+  },
 });

@@ -29,7 +29,6 @@ export const cartTotalCost = () => {
   let total = 0;
 
   cartStore.value.map((cartItem) => {
-    console.log("cartItem.price", cartItem.price);
     total += cartItem.price;
   });
 

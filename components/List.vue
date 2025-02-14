@@ -12,7 +12,6 @@ const isChecked = ref(false);
 
 watch(isChecked, (newValue) => {
   if (newValue && product) {
-    console.log(" Selected list:", listName);
     addItemToList(listName, product);
   }
 });
