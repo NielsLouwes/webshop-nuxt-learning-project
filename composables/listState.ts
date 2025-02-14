@@ -1,10 +1,32 @@
 import type { Product } from "~/types/global";
+import nuxtStorage from "nuxt-storage";
 
 type ObjectStoreType = { [key: string]: Product[] };
 
 export const useListStore = () => {
-  const list = useState<string[]>("list", () => []);
-  const objectStore = useState<ObjectStoreType>("objectStore", () => ({}));
+  const list = useState<string[]>("list", () => {
+    // Initialize from localStorage if exists
+    const stored = nuxtStorage.localStorage.getData("list");
+
+    return stored || [];
+  });
+  const objectStore = useState<ObjectStoreType>("objectStore", () => {
+    const stored = nuxtStorage.localStorage.getData("objectStore");
+
+    return stored || {};
+  });
+
+  watch(
+    objectStore,
+    (newValue) => {
+      nuxtStorage.localStorage.setData("objectStore", newValue);
+    },
+    { deep: true }
+  );
+
+  watch(list, (newValue) => {
+    nuxtStorage.localStorage.setData("list", newValue);
+  });
 
   const addToList = (product: Product) => {
     const existingProduct = list.value.find((p) => p === product.title);
@@ -27,6 +49,7 @@ export const useListStore = () => {
       delete objectStore.value[listName];
       // Trigger reactivity
       objectStore.value = { ...objectStore.value }; // Create a new object reference
+      nuxtStorage.localStorage.removeItem();
     }
   };
 
@@ -38,6 +61,7 @@ export const useListStore = () => {
     if (!existingProduct) {
       objectStore.value[listName] = objectStore.value[listName] || [];
       objectStore.value[listName].push(product);
+      objectStore.value = { ...objectStore.value };
     }
   };
 

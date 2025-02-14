@@ -7,7 +7,7 @@ useSeoMeta({
     "Fake Ecommerce website built with Nuxt 3. We offer the latest products on the market for a great price.",
   ogUrl: "https://nuxt3onlinewebshopexample.com",
   ogType: "website",
-  ogLocale: "en_US",
+  ogLocale: "nl_NL",
   ogSiteName: "Nuxt 3 Ecommerce Webshop Example",
 });
 </script>

@@ -5,7 +5,6 @@ const { product } = defineProps<{
   product: Product;
 }>();
 
-// product.rating > 4 , create a border that stands out!
 const highRating = product.rating.rate >= 4;
 </script>
 
